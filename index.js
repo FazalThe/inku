@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
-import { App } from "@slack/bolt";
-import { OpenRouter } from "@openrouter/sdk";
+require("dotenv").config;
+const { App } = require("@slack/bolt");
+const { OpenRouter } = require("@openrouter/sdk");
 
-dotenv.config();
+
 
 //AI
 const client = new OpenRouter({
