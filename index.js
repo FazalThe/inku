@@ -10,7 +10,7 @@ const client = new OpenRouter({
   serverURL: "https://ai.hackclub.com/proxy/v1",
 });
 
-async function askAI(prompt) {
+async function askAI(prompt, conversations) {
   console.log(prompt);
   const response = await client.chat.send({
     chatRequest: {
@@ -82,6 +82,7 @@ app.command("/inku-help", async ({ ack, respond }) => {
 
 app.event("app_mention", async({ event, client }) => {
   console.log("mentioned");
+
   const replies = await client.conversations.replies({
     channel: event.channel,
     ts: event.thread_ts || event.ts 
