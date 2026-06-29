@@ -1,4 +1,4 @@
-require("dotenv").config;
+require("dotenv").config();
 const { App } = require("@slack/bolt");
 const { OpenRouter } = require("@openrouter/sdk");
 
@@ -12,19 +12,20 @@ const client = new OpenRouter({
 
 async function askAI(prompt) {
   const response = await client.chat.send({
-    model: "google/gemini-3.5-flash",
-    messages: [
-      {
-        role: "user",
-        content: prompt,
-      },
-    ],
-    stream: false,
+    chatRequest: {
+      model: "google/gemini-2.5-flash",
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      stream: false,
+    },
   });
 
   return response;
 }
-
 // Slack
 
 const app = new App({
@@ -44,7 +45,7 @@ app.command("/inku-help", async ({ ack, respond }) => {
   });
 });
 
-app.command("/inku",async({command,ack,respond})=>{
+app.command("/inku",async({ command, ack, respond })=>{
   await ack();
 
   const prompt = command.text;
