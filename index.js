@@ -89,7 +89,8 @@ app.event("app_mention", async({ event, client }) => {
 
   const conversations = replies.messages
     .map(msg => `${msg.user}: ${msg.text}`)
-    
+    .join("\n");
+
   const prompt = event.text
     .replace(/<@[^>]+>/, "")
     .trim();
