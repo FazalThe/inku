@@ -11,6 +11,7 @@ const client = new OpenRouter({
 });
 
 async function askAI(prompt) {
+  console.log(prompt);
   const response = await client.chat.send({
     chatRequest: {
       model: "google/gemini-2.5-flash",
@@ -59,6 +60,7 @@ app.command("/inku-help", async ({ ack, respond }) => {
 }); */
 
 app.event("app_mention", async({ event, client }) => {
+  console.log("mentioned");
   const prompt = event.text
     .replace(/<@[^>]+>/, "")
     .trim();
@@ -70,6 +72,7 @@ app.event("app_mention", async({ event, client }) => {
     thread_ts: event.ts,
     text: answer.choices[0].message.content
   });
+  console.log("send");
 });
 
 (async () => {
