@@ -45,7 +45,7 @@ app.command("/inku-help", async ({ ack, respond }) => {
   });
 });
 
-app.command("/inku",async({ command, ack, respond })=>{
+/* app.command("/inku",async({ command, ack, respond })=>{
   await ack();
 
   const prompt = command.text;
@@ -56,6 +56,20 @@ app.command("/inku",async({ command, ack, respond })=>{
   });
 
   
+}); */
+
+app.event("app_mention", async({ event, client }) => {
+  const prompt = event.text
+    .replace(/<@[^>]+>/, "")
+    .trim();
+  
+  const answer = await askAI(prompt);
+
+  await client.chat.postMessage({
+    channel: event.channel,
+    thread_ts: event.ts,
+    text: answer.choices[0].message.content
+  });
 });
 
 (async () => {
