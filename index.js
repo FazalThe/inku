@@ -88,15 +88,19 @@ app.event("app_mention", async({ event, client }) => {
     ts: event.thread_ts || event.ts 
   })
 
+  await console.log(replies);
+
   const conversations = replies.messages
     .map(msg => `${msg.user}: ${msg.text}`)
     .join("\n");
+
+  await console.log(conversations);
 
   const prompt = event.text
     .replace(/<@[^>]+>/, "")
     .trim();
   
-  const answer = await askAI(prompt);
+  const answer = await askAI(prompt, conversations);
 
   await client.chat.postMessage({
     channel: event.channel,
