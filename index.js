@@ -1,53 +1,16 @@
-require("dotenv").config();
-const { App } = require("@slack/bolt");
-const { OpenRouter } = require("@openrouter/sdk");
+import dotenv from "dotenv";
+import { App } from "@slack/bolt";
+import { OpenRouter } from "@openrouter/sdk";
 
+import { askAI } from "./ai/ask.js";
 
+dotenv.config();
 
-//AI
 const client = new OpenRouter({
   apiKey: process.env.OPENROUTER_API_KEY,
   serverURL: "https://ai.hackclub.com/proxy/v1",
 });
 
-async function askAI(prompt, conversations) {
-  console.log(prompt);
-  const response = await client.chat.send({
-    chatRequest: {
-      model: "google/gemini-3.5-flash",
-      messages: [
-        {
-          role: "system",
-          content: `
-          You are Inku.
-
-          You are an AI assistant for Slack.
-          Answer using the provided Slack conversation.
-          If the answer isn't in the conversation, say you don't know.
-          Do not invent information.
-          But if its a general question, you can answer.
-          `
-          
-        },
-        {
-          role: "user",
-          content: `
-          slack thread:
-
-          ${conversations}
-          
-          Query:
-
-          ${prompt}
-          `
-        },
-      ],
-      stream: false,
-    },
-  });
-
-  return response;
-}
 // Slack
 
 const app = new App({
