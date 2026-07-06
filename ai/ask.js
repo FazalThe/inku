@@ -1,3 +1,7 @@
+import client from "./client.js";
+
+import { tools } from "./tools.js"
+
 export async function askAI(prompt, conversations) {
   console.log(prompt);
   const response = await client.chat.send({
@@ -31,6 +35,7 @@ export async function askAI(prompt, conversations) {
           `
         },
       ],
+      tools,
       stream: false,
     },
   });
