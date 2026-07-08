@@ -8,7 +8,6 @@ export async function getBlogsTitle() {
     const xml = parser.parseFromString(xmlText, "application/xml");
 
     const items = xml.getElementsByTagName("items");
-    const length = items.length
     const titles =[];
 
     for (const item of items) {
@@ -19,5 +18,13 @@ export async function getBlogsTitle() {
 }
 
 export async function searchBlogs(title) {
-    
+    const response = await fetch("https://news.hackclub.com/feed.xml");
+    const xmlText = await response.text();
+
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlText, "application/xml");
+
+    const items = [...xml.getElementsByTagName("items")];
+    const blog = items.find(item => item.querySelector("title").textContent === title)
+
 }
