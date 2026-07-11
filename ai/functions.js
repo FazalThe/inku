@@ -17,7 +17,7 @@ export async function getBlogsTitle() {
     return titles;
 }
 
-export async function searchBlogs(title) {
+export async function searchBlogs(titles) {
     const response = await fetch("https://news.hackclub.com/feed.xml");
     const xmlText = await response.text();
 
@@ -25,6 +25,22 @@ export async function searchBlogs(title) {
     const xml = parser.parseFromString(xmlText, "application/xml");
 
     const items = [...xml.getElementsByTagName("items")];
-    const blog = items.find(item => item.querySelector("title").textContent === title)
+
+const blogs = {};
+
+for (const title of titles) {
+    blogs[title] = items.find(
+        item => item.querySelector("title").textContent === currentTitle
+    );
+}
+
+return blogs;
 
 }
+
+const toolMap = {
+    getBlogsTitle,
+    searchBlogs
+};
+
+export default toolMap;

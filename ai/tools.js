@@ -15,7 +15,11 @@ export const tools = [
                 type: 'object',
                 properties: {
                   title: {
-                    type: 'string'
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    },
+                    description: 'titles of the blog to read'
                   }  
                 },
                 required: ['query']

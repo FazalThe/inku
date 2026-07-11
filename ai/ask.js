@@ -1,6 +1,7 @@
 import client from "./client.js";
 
-import { tools } from "./tools.js"
+import { tools } from "./tools.js";
+import toolMap from "./functions.js";
 
 
 const messages = [
@@ -40,16 +41,16 @@ export async function askAI(prompt, conversations) {
       stream: false,
     },
   });
-
-  messages.push(response.choices[0].message);
+  const answer = response.choices[0].message
+  messages.push(answer);
 
   const role = response.choices[0].message.role;
 
-  if (role === "user"){
-    return response;
-  }
+  for (const toolCall of answer.toolCalls){
 
-  if (role === "assistant"){
+    const toolName = toolCall.function.name;
+    const arguments = toolCall.function.arguments;
 
+    const toolResponse = await toolMap[toolName](arguments);
   }
 }
