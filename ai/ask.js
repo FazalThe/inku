@@ -47,11 +47,21 @@ export async function askAI(prompt, conversations) {
 
   const role = response.choices[0].message.role;
 
-  for (const toolCall of answer.toolCalls){
+  console.log(answer);
+  console.log(answer.toolCalls)
 
-    const toolName = toolCall.function.name;
-    const terms = toolCall.function.arguments;
+  if (answer.toolCalls) {
+    for (const toolCall of answer.toolCalls){
 
-    const toolResponse = await toolMap[toolName](arguments);
+      const toolName = toolCall.function.name;
+      const terms = toolCall.function.arguments;
+
+      const toolResponse = await toolMap[toolName](arguments);
+    }
+  } else {
+
+    return(response)
+    
   }
+  
 }

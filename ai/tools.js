@@ -22,7 +22,7 @@ export const tools = [
                     description: 'titles of the blog to read'
                   }  
                 },
-                required: ['query']
+                required: ['title']
             }
         }
     }

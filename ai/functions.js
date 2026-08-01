@@ -1,13 +1,13 @@
-
+import { XMLParser } from "fast-xml-parser";
 
 export async function getBlogsTitle() {
     const response = await fetch("https://news.hackclub.com/feed.xml");
     const xmlText = await response.text();
 
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(xmlText, "application/xml");
+    const parser = new XMLParser();
+    const xml = parser.parse(xmlText);
 
-    const items = xml.getElementsByTagName("items");
+    const items = xml.rss.channel.item;
     const titles =[];
 
     for (const item of items) {
@@ -21,10 +21,10 @@ export async function searchBlogs(titles) {
     const response = await fetch("https://news.hackclub.com/feed.xml");
     const xmlText = await response.text();
 
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(xmlText, "application/xml");
+    const parser = new XMLParser();
+    const xml = parser.parse(xmlText);
 
-    const items = [...xml.getElementsByTagName("items")];
+    const items = [...xml.rss.channel.item];
 
 const blogs = {};
 

@@ -14,6 +14,7 @@
     "@openrouter/sdk": "^0.13.20",
     "@slack/bolt": "^4.7.3",
     "axios": "^1.18.1",
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "fast-xml-parser": "^5.10.1"
   }
 }

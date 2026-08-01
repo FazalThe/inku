@@ -22,7 +22,7 @@ app.event("app_mention", async({ event, client }) => {
     .trim();
   
   const answer = await askAI(prompt, conversations);
-  console.log(answer.choices[0].message)
+  //console.log(answer.choices[0].message)
   
   await client.chat.postMessage({
     channel: event.channel,
