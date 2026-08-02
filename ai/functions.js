@@ -1,46 +1,53 @@
 import { XMLParser } from "fast-xml-parser";
 
-export async function getBlogsTitle() {
-    const response = await fetch("https://news.hackclub.com/feed.xml");
-    const xmlText = await response.text();
+const FEED_URL = "https://news.hackclub.com/feed.xml";
 
-    const parser = new XMLParser();
-    const xml = parser.parse(xmlText);
+async function getItems() {
+    const response = await fetch(FEED_URL);
 
-    const items = xml.rss.channel.item;
-    const titles =[];
-
-    for (const item of items) {
-        titles.push = item.querySelector("title").textContent;
+    if (!response.ok) {
+        throw new Error(`Failed to fetch feed: ${response.status}`);
     }
 
-    return titles;
+    const xmlText = await response.text();
+
+    const parser = new XMLParser({
+        ignoreAttributes: false,
+    });
+
+    const xml = parser.parse(xmlText);
+
+
+    const items = xml.rss.channel.item;
+    return Array.isArray(items) ? items : [items];
+}
+
+
+export async function getBlogsTitle() {
+    const items = await getItems();
+
+    return items.map(item => item.title);
 }
 
 export async function searchBlogs(titles) {
-    const response = await fetch("https://news.hackclub.com/feed.xml");
-    const xmlText = await response.text();
+    const items = await getItems();
 
-    const parser = new XMLParser();
-    const xml = parser.parse(xmlText);
+    const blogs = {};
 
-    const items = [...xml.rss.channel.item];
+    for (const title of titles) {
+        const blog = items.find(item => item.title === title);
 
-const blogs = {};
+        if (blog) {
+            blogs[title] = blog;
+        }
+    }
 
-for (const title of titles) {
-    blogs[title] = items.find(
-        item => item.querySelector("title").textContent === currentTitle
-    );
-}
-
-return blogs;
-
+    return blogs;
 }
 
 const toolMap = {
     getBlogsTitle,
-    searchBlogs
+    searchBlogs,
 };
 
 export default toolMap;
