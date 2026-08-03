@@ -29,18 +29,27 @@ export async function getBlogsTitle() {
     return items.map(item => item.title);
 }
 
-export async function searchBlogs(titles) {
-    
-    titles = Array.isArray(titles) ? titles : [titles];
+export async function searchBlogs({title}) {
+    console.log("func called")
+    const titles = Array.isArray(title) ? title : [title];
 
     const items = await getItems();
     const blogs = {};
 
-    for (const title of titles) {
-        const blog = items.find(item => item.title === title);
+    for (const t of titles) {
+        
+        const blog = items.find(item => item.title === t);
+
+        console.log("Looking for:", JSON.stringify(title));
+        for (const item of items) {
+        console.log("Item:", JSON.stringify(item.title));
+        }
+
+        console.log("blog: ",blog)
 
         if (blog) {
-            blogs[title] = blog;
+            blogs[t] = blog;
+
         }
     }
 

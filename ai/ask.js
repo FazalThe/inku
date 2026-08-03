@@ -59,6 +59,8 @@ export async function askAI(prompt, conversations) {
     for (const toolCall of answer.toolCalls){
       const toolName = toolCall.function.name;
       const args = JSON.parse(toolCall.function.arguments);
+      console.log(toolName);
+      console.log(args);
       const toolResponse = await toolMap[toolName](args);
       
  
