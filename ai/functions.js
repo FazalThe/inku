@@ -30,8 +30,10 @@ export async function getBlogsTitle() {
 }
 
 export async function searchBlogs(titles) {
-    const items = await getItems();
+    
+    titles = Array.isArray(titles) ? titles : [titles];
 
+    const items = await getItems();
     const blogs = {};
 
     for (const title of titles) {
@@ -43,6 +45,7 @@ export async function searchBlogs(titles) {
     }
 
     return blogs;
+    console.log(blogs)
 }
 
 const toolMap = {

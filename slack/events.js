@@ -9,7 +9,7 @@ app.event("app_mention", async({ event, client }) => {
     ts: event.thread_ts || event.ts 
   })
 
-  await console.log(replies);
+  //await console.log(replies);
 
   const conversations = replies.messages
     .map(msg => `${msg.user}: ${msg.text}`)

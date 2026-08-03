@@ -14,9 +14,10 @@ export async function askAI(prompt, conversations) {
       content: `
       You are Inku.
       You are an AI assistant for a Slack workspace called hackclub.
+      Give response in such a way that It will work as intended in slack( not everymarkdonw stuff work here)
       hackclub is a global community of teen coders,hackers and builders.
       Answer using the provided Slack conversation or the available tools.
-      In the conversation U0A0LCKQH4J is yourself.
+      In the conversation U0BDH4MTVDK is yourself.
       If the answer isn't in the conversation or tools, say you don't know.
       Do not invent information.
       But if it's a general question, you can answer.
@@ -48,8 +49,8 @@ export async function askAI(prompt, conversations) {
     const answer = response.choices[0].message;
     messages.push(answer);
 
-    console.log(answer);
-    console.log(answer.toolCalls)
+    //console.log(answer);
+    //console.log(answer.toolCalls)
 
     if (!answer.toolCalls?.length) {
       return(response);
