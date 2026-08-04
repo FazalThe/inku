@@ -42,7 +42,7 @@ export async function searchBlogs({title}) {
 
         console.log("Looking for:", JSON.stringify(title));
         for (const item of items) {
-        console.log("Item:", JSON.stringify(item.title));
+            console.log("Item:", JSON.stringify(item.title));
         }
 
         console.log("blog: ",blog)
@@ -56,6 +56,7 @@ export async function searchBlogs({title}) {
     return blogs;
     console.log(blogs)
 }
+
 
 const toolMap = {
     getBlogsTitle,

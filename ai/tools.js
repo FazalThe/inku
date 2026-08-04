@@ -25,6 +25,26 @@ export const tools = [
                 required: ['title']
             }
         }
-    }
-]
+    },
+    {
+        type: 'function',
+        function: {
+            name: 'searchSlack',
+            description: 'Get list of matching slack messages based on the search query',
+            parameters: {
+                type: 'object',
+                properties: {
+                  query: {
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    },
+                    description: 'queries to search'
+                  }  
+                },
+                required: ['query']
+            }
+        }
+    },   
+];
 

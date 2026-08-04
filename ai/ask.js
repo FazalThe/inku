@@ -35,7 +35,7 @@ export async function askAI(prompt, conversations) {
       `
     }
   ];
-
+  
   while (true) {
     const response = await client.chat.send({
       chatRequest: {
