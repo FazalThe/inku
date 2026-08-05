@@ -17,7 +17,9 @@ export async function searchSlack({query}) {
             channel_id: result.channel.id,
             channel_name: result.channel.name,
             ts: result.ts,
-            text: result.text
+            text: result.text,
+            thread_ts: result.thread_ts,
+            has_replies: (result.reply_count? (result.reply_count > 0 ): false)
         }));
     }
 

@@ -45,6 +45,27 @@ export const tools = [
                 required: ['query']
             }
         }
+    },
+    {
+        type: 'function',
+        function: {
+            name: 'getReplies',
+            description: 'Get thread replies of a specific message',
+            parameters: {
+                type: 'object',
+                properties: {
+                  ts: {
+                    type: 'string',
+                    description: 'ts of the message'
+                  },
+                  channel:{
+                    type: 'string',
+                    description: 'channel id'
+                  }  
+                },
+                required: ['ts','channel']
+            }
+        }
     },   
 ];
 
