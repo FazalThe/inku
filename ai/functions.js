@@ -1,4 +1,6 @@
 import { XMLParser } from "fast-xml-parser";
+import { getReplies } from "../slack/replies.js";
+import { searchSlack } from "../slack/search.js";
 
 const FEED_URL = "https://news.hackclub.com/feed.xml";
 
@@ -61,6 +63,8 @@ export async function searchBlogs({title}) {
 const toolMap = {
     getBlogsTitle,
     searchBlogs,
+    searchSlack,
+    getReplies
 };
 
 export default toolMap;

@@ -1,6 +1,5 @@
 import app from "./app.js";
 import { askAI } from "../ai/ask.js";
-import client from "../ai/client.js";
 
 app.event("app_mention", async({ event, client }) => {
   console.log("mentioned");

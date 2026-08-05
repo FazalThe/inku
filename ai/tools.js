@@ -66,6 +66,6 @@ export const tools = [
                 required: ['ts','channel']
             }
         }
-    },   
+    }   
 ];
 
