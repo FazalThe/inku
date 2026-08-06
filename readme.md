@@ -34,6 +34,7 @@ The AI currently have access to 4 tools
 ```bash
 git clone https://github.com/FazalThe/inku
 cd inku
+npm install
 node index.js
 ```
 ---
