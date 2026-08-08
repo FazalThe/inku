@@ -1,10 +1,10 @@
 # Inku
 
-A slack AI chatbot for hackclub slack. It has access to messages where bot has been added. It also have acces to blogs of hackclub in news.hackclub.com ( slacker news ).
+A slack AI chatbot for hackclub slack. It has access to messages where the bot has been added to. It also have access to blogs of hackclub in news.hackclub.com ( slacker news ).
 
 This bot is currently running 24/7 on nest and is installed on hackclub workspace.
 
-I made this so that there is a bot which has access to slack messages and hackclub blogs so that it can give better answer and assitance
+I made this so that there is a bot which has access to slack messages and hackclub blogs, so that it can give better answers and assitance.
 
 
 ---
